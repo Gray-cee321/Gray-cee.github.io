@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Gray | Neon Dev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Neon Glow Utility */
+    .neon-pink {
+      color: #ff004d;
+      text-shadow: 0 0 5px #ff004d, 0 0 10px #ff004d, 0 0 20px #ff004d, 0 0 40px #ff004d;
+    }
+
+    .neon-border {
+      border: 2px solid #ff004d;
+      box-shadow: 0 0 10px #ff004d, inset 0 0 10px #ff004d;
+    }
+
+    /* Header / Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 8vw, 64px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 .white {
+      color: #ffffff;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: #cccccc;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    /* Neon Buttons */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .neon-btn {
+      background: #ff004d;
+      color: #000000;
+      border: none;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 0 15px #ff004d, 0 0 30px #ff004d;
+    }
+
+    .neon-btn:hover {
+      box-shadow: 0 0 25px #ff004d, 0 0 50px #ff004d;
+      transform: translateY(-2px);
+    }
+
+    .neon-btn-outline {
+      background: transparent;
+      color: #ff004d;
+      border: 2px solid #ff004d;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ff004d, inset 0 0 10px #ff004d;
+    }
+
+    .neon-btn-outline:hover {
+      background: #ff004d;
+      color: #000000;
+      box-shadow: 0 0 20px #ff004d, 0 0 40px #ff004d;
+    }
+
+    /* Avatar with Neon Ring */
+    .avatar-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 40px;
+    }
+
+    .avatar-neon {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff004d;
+      box-shadow: 0 0 20px #ff004d, 0 0 40px #ff004d, 0 0 60px #ff004d;
+    }
+
+    /* About Section */
+    .about {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      padding: 30px;
+      background: rgba(255, 0, 77, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 0, 77, 0.3);
+    }
+
+    .about h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .about p {
+      color: #cccccc;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* Skills Carousel */
+    .carousel-section h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 20px 0 40px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .carousel-container::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar-thumb {
+      background: #ff004d;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff004d;
+    }
+
+    .skill-card {
+      min-width: 260px;
+      background: #0a0a0a;
+      border: 2px solid #ff004d;
+      border-radius: 10px;
+      padding: 30px 20px;
+      scroll-snap-align: start;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(255, 0, 77, 0.3);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #ff004d, 0 0 50px #ff004d;
+    }
+
+    .skill-card .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ff004d;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: #999;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255, 0, 77, 0.3);
+      margin-top: 60px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      color: #ff004d;
+      font-size: 24px;
+      transition: 0.3s;
+      text-shadow: 0 0 10px #ff004d;
+    }
+
+    .social-links a:hover {
+      text-shadow: 0 0 20px #ff004d, 0 0 40px #ff004d;
+      transform: scale(1.2);
+    }
+
+    footer p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .skill-card { min-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>
+        <span class="white">CODE THE FUTURE WITH</span><br>
+        <span class="neon-pink">NEON</span>
+      </h1>
+      <p class="subtitle">Frontend Developer & UI Designer | Dev Gray</p>
+
+      <div class="avatar-wrapper">
+        <img src="Snapchat-904055064~3.jpg" alt="Dev Gray" class="avatar-neon">
+      </div>
+
+      <div class="btn-group">
+        <a href="graycv.html" download class="neon-btn">Download CV</a>
+        <a href="mailto: youremail@gmailcom" class="neon-btn-outline">Contact Me</a>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="about">
+      <h2 class="neon-pink">GRAY-DEV</h2>
+      <p>
+        I create immersive digital experiences that blend cutting-edge technology with stunning visuals. 
+        My passion is turning complex ideas into intuitive interfaces that captivate users and push boundaries.
+        Currently learning HTML, CSS, and JavaScript at Chuka University.
+      </p>
+    </div>
+
+    <!-- Skills Carousel -->
+    <div class="carousel-section">
+      <h2 class="neon-pink">MY SKILLS</h2>
+      <div class="carousel-container">
+        
+        <div class="skill-card">
+          <div class="icon">💻</div>
+          <h3>HTML5 & CSS3</h3>
+          <p>Building responsive, pixel-perfect layouts with modern CSS including Flexbox and Grid.</p>
+        </div>
+
+        <div class="skill-card">
+          <div class="icon">⚡</div>
+          <h3>JavaScript</h3>
+          <p>Learning to add interactivity and dynamic features. DOM manipulation coming soon.</p>
+        </div>
+
+        <div class="skill-card">
+          <div class="icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Creating neon-themed, user-focused interfaces that look good on all devices.</p>
+        </div>
+
+        <div class="skill-card">
+          <div class="icon">🐍</div>
+          <h3>Python</h3>
+          <p>Writing scripts and solving problems. Foundation for backend development.</p>
+        </div>
+
+        <div class="skill-card">
+          <div class="icon">📱</div>
+          <h3>Mobile First</h3>
+          <p>Entire portfolio coded on phone using TrebEdit. Proof you don't need a laptop to start.</p>
+        </div>
+        <div class="skill-card">
+          <div class="icon">🧴</div>
+          <h3>Perfumes saler</h3>
+          <p>Does per time job as a perfume saler.Has variety of perfumes ranging from;pinkshifon, sweet pershion, polo sport,Dun-hill, but just to mention a few.Don't shy off to make your order today through my links below</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://github.com/yourusername">GH</a>
+        <a href="https://Facebook.com">FB</a>
+        <a href="https://Tick tock.com">TT</a>
+        <a href="mailto:youremail@gmail.com">@</a>
+      </div>
+      <p>© 2026 Dev Gray | Built with HTML + CSS in TrebEdit | Nairobi, KE</p>
+    </footer>
+
+  </div>
+</body>
+  </html>
+  
